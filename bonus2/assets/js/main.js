@@ -40,17 +40,9 @@ for (let i = 0; i < slidesArray.length; i++) {
       generateThumb(i, elementArray);
 }
 
-// seleziono i button che userò come next e prev
-const nextButton = document.querySelector('.next');
-const prevButton = document.querySelector('.prev');
-
-
-
-
 let seconds = 0;
 const intervalId = setInterval(countdown, 3000)
 function countdown() {
-      console.log(seconds);
       if (seconds % 3 === 0){
             const slidesImg = document.querySelectorAll('.slides > img');
             const currentImage = slidesImg[activeImage];
