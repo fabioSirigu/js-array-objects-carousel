@@ -8,7 +8,6 @@
       height: 100px;
       aspect-ratio: 1 / 1;
       object-fit: cover;
-      
 }
 
 
@@ -19,7 +18,7 @@
       filter: grayscale(100%);
 }
 
-.active_thumb {
+img.active_thumb {
       filter: grayscale(0);
 }
 

@@ -70,7 +70,7 @@ nextButton.addEventListener('click', function () {
         console.log(activeImage)
     }
     // ora che ho incrementato devo aggiungere una variabile per l'immagine e metterle la classe active
-    addClass(slidesImg, slidesTitle, slidesText, currentThumb)
+    addClass(slidesImg, slidesTitle, slidesText, thumbsImg, currentThumb)
     
     
 })
@@ -117,7 +117,7 @@ function generateText(index, element) {
 
 function generateThumb(index, element) {
     const thumbEl = document.querySelector('.thumbnails')
-    const thumbMarkup = `<img class="${index === activeImage ? 'active' : ''}" src="${element.image}" alt="">`;
+    const thumbMarkup = `<img class="${index === activeImage ? 'active_thumb' : ''}" src="${element.image}" alt="">`;
     thumbEl.insertAdjacentHTML('beforeend', thumbMarkup);
 }
 
