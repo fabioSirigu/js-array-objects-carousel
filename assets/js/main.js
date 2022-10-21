@@ -28,7 +28,6 @@ const slidesArray = [
             }
 ]
 
-console.log(slidesArray);
 
 //seleziono l'elemento nel quale inserirà le immagini
 
@@ -43,12 +42,24 @@ let activeImage = 0
 for (let i = 0; i < slidesArray.length; i++) {
       const slideUrl = slidesArray[i];
       const slideHtml = `<img class="${i === activeImage ? 'active' : ''}" src="${slideUrl.image}" alt="">`;
-
+      //generateMarkup(slideUrl)
       slidesEl.insertAdjacentHTML('beforeend', slideHtml)
-      console.log(slidesEl)
+      generateTitle(i, slideUrl);
+      generateText(i, slideUrl);
+      
 }
 
+function generateTitle(index, element) {
+      const titleEl = document.querySelector('.title');
+      const titleMarkup = `<h2 class="${index === activeImage ? 'active' : ''}">${element.title}</h2>`;
+      titleEl.insertAdjacentHTML('beforeend', titleMarkup);
+}
 
+function generateText(index, element) {
+      const textEl = document.querySelector('.text');
+      const textMarkup = `<h5 class="${index === activeImage ? 'active' : ''}">${element.text}</h5>`;
+      textEl.insertAdjacentHTML('beforeend', textMarkup);
+}
 
 
 // seleziono i button che userò come next e prev
@@ -59,8 +70,17 @@ const prevButton = document.querySelector('.prev');
 nextButton.addEventListener('click', function () {
       const slidesImg = document.querySelectorAll('.slides > img');
       const currentImage = slidesImg[activeImage];
+      // scorro il titolo
+      const slidesTitle = document.querySelectorAll('.title > h2');
+      const currentTitle = slidesTitle[activeImage];
+      // scorro il testo
+      const slidesText = document.querySelectorAll('.text > h5');
+      const currentText = slidesText[activeImage];
+
       // tolgo la classe active per non mostrarla più
       currentImage.classList.remove('active');
+      currentTitle.classList.remove('active');
+      currentText.classList.remove('active');
       // faccio un incremento della mia immagine per selezionare la successiva
       activeImage++;
 
@@ -71,7 +91,11 @@ nextButton.addEventListener('click', function () {
       }
       // ora che ho incrementato devo aggiungere una variabile per l'immagine e metterle la classe active
       const nextImage = slidesImg[activeImage];
+      const nextTitle = slidesTitle[activeImage];
+      const nextText = slidesText[activeImage];
       nextImage.classList.add('active')
+      nextTitle.classList.add('active')
+      nextText.classList.add('active')
       
       
 })

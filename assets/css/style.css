@@ -37,4 +37,15 @@ img {
       left: 10px;
 }
 
+h2, 
+h5{
+      display: none;
+}
+
+.title,
+.text {
+      margin: 1rem auto;
+      max-width: 800px;
+}
+
 
