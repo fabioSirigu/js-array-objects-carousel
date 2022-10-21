@@ -1,0 +1,40 @@
+.active {
+      display: block;
+}
+
+img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+}
+
+
+.slides {
+      position: relative;
+      height: 500px;
+      width: 800px;
+      display: flex;
+      justify-content: end;
+}
+.next,
+.prev {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%);
+}
+
+.next {
+      right: 10px;
+      transform: rotate(90deg);
+}
+
+.prev {
+      transform: rotate(90deg);
+      left: 10px;
+}
+
+
