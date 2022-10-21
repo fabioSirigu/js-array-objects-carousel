@@ -1,5 +1,3 @@
-// creo l'array delle immagini
-
 const slidesArray = [
             {
                 image: './assets/img/01.webp',
@@ -28,39 +26,17 @@ const slidesArray = [
             }
 ]
 
-
-//seleziono l'elemento nel quale inserirà le immagini
-
 const slidesEl = document.querySelector('.slides');
-
-/* slidesEl.insertAdjacentHTML('beforeend', slidesArray[2]) */
-
-// creo una variabile per tenere sotto controllo quale immagine è attiva
-
 let activeImage = 0
 
 for (let i = 0; i < slidesArray.length; i++) {
-      const slideUrl = slidesArray[i];
-      const slideHtml = `<img class="${i === activeImage ? 'active' : ''}" src="${slideUrl.image}" alt="">`;
-      //generateMarkup(slideUrl)
+      const elementArray = slidesArray[i];
+      const slideHtml = `<img class="${i === activeImage ? 'active' : ''}" src="${elementArray.image}" alt="">`;
+      //generateMarkup(elementArray)
       slidesEl.insertAdjacentHTML('beforeend', slideHtml)
-      generateTitle(i, slideUrl);
-      generateText(i, slideUrl);
-      
+      generateTitle(i, elementArray);
+      generateText(i, elementArray);    
 }
-
-function generateTitle(index, element) {
-      const titleEl = document.querySelector('.title');
-      const titleMarkup = `<h2 class="${index === activeImage ? 'active' : ''}">${element.title}</h2>`;
-      titleEl.insertAdjacentHTML('beforeend', titleMarkup);
-}
-
-function generateText(index, element) {
-      const textEl = document.querySelector('.text');
-      const textMarkup = `<h5 class="${index === activeImage ? 'active' : ''}">${element.text}</h5>`;
-      textEl.insertAdjacentHTML('beforeend', textMarkup);
-}
-
 
 // seleziono i button che userò come next e prev
 const nextButton = document.querySelector('.next');
@@ -78,9 +54,8 @@ nextButton.addEventListener('click', function () {
       const currentText = slidesText[activeImage];
 
       // tolgo la classe active per non mostrarla più
-      currentImage.classList.remove('active');
-      currentTitle.classList.remove('active');
-      currentText.classList.remove('active');
+      removeClass(currentImage, currentTitle, currentText);
+      
       // faccio un incremento della mia immagine per selezionare la successiva
       activeImage++;
 
@@ -90,12 +65,7 @@ nextButton.addEventListener('click', function () {
             console.log(activeImage)
       }
       // ora che ho incrementato devo aggiungere una variabile per l'immagine e metterle la classe active
-      const nextImage = slidesImg[activeImage];
-      const nextTitle = slidesTitle[activeImage];
-      const nextText = slidesText[activeImage];
-      nextImage.classList.add('active')
-      nextTitle.classList.add('active')
-      nextText.classList.add('active')
+      addClass(slidesImg, slidesTitle, slidesText)
       
       
 })
@@ -111,9 +81,8 @@ prevButton.addEventListener('click', function () {
       const currentText = slidesText[activeImage];
 
       // tolgo la classe active per non mostrarla più
-      currentImage.classList.remove('active');
-      currentTitle.classList.remove('active');
-      currentText.classList.remove('active');
+      removeClass(currentImage, currentTitle, currentText);
+
       // faccio un decremento della mia immagine per selezionare la successiva
       activeImage--;
       
@@ -123,11 +92,33 @@ prevButton.addEventListener('click', function () {
             console.log(activeImage)
       }
       // ora che ho incrementato devo aggiungere una variabile per l'immagine e metterle la classe active
-      const nextImage = slidesImg[activeImage];
-      const nextTitle = slidesTitle[activeImage];
-      const nextText = slidesText[activeImage];
+      addClass(slidesImg, slidesTitle, slidesText);
+   
+})
+
+function generateTitle(index, element) {
+      const titleEl = document.querySelector('.title');
+      const titleMarkup = `<h2 class="${index === activeImage ? 'active' : ''}">${element.title}</h2>`;
+      titleEl.insertAdjacentHTML('beforeend', titleMarkup);
+}
+
+function generateText(index, element) {
+      const textEl = document.querySelector('.text');
+      const textMarkup = `<h5 class="${index === activeImage ? 'active' : ''}">${element.text}</h5>`;
+      textEl.insertAdjacentHTML('beforeend', textMarkup);
+}
+
+function addClass(img, title, text){
+      const nextImage = img[activeImage];
+      const nextTitle = title[activeImage];
+      const nextText = text[activeImage];
       nextImage.classList.add('active')
       nextTitle.classList.add('active')
       nextText.classList.add('active')
-     
-})
+}
+
+function removeClass(img, title, text) {
+      img.classList.remove('active');
+      title.classList.remove('active');
+      text.classList.remove('active');
+}
