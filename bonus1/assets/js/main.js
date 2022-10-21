@@ -103,6 +103,44 @@ prevButton.addEventListener('click', function () {
     
 })
 
+
+let seconds = 0;
+const intervalId = setInterval(countdown, 3000)
+function countdown() {
+    console.log(seconds);
+    if (seconds % 3 === 0){
+        const slidesImg = document.querySelectorAll('.slides > img');
+        const currentImage = slidesImg[activeImage];
+        // scorro il titolo
+        const slidesTitle = document.querySelectorAll('.title > h2');
+        const currentTitle = slidesTitle[activeImage];
+        // scorro il testo
+        const slidesText = document.querySelectorAll('.text > h5');
+        const currentText = slidesText[activeImage];
+        // scorro le thumb
+        const thumbsImg = document.querySelectorAll('.thumbnails > img');
+        const currentThumb = thumbsImg[activeImage];
+        
+        // tolgo la classe active per non mostrarla più
+        removeClass(currentImage, currentTitle, currentText, currentThumb);
+        
+        // faccio un incremento della mia immagine per selezionare la successiva
+        activeImage++;
+        
+        // quando sono all'ultima immagine devo tornare alla prima
+        if (activeImage === 5){
+            activeImage = 0
+            console.log(activeImage)
+        }
+        // ora che ho incrementato devo aggiungere una variabile per l'immagine e metterle la classe active
+        addClass(slidesImg, slidesTitle, slidesText, thumbsImg, currentThumb)
+        
+        
+    } else {
+        seconds++
+    }
+}
+
 function generateTitle(index, element) {
     const titleEl = document.querySelector('.title');
     const titleMarkup = `<h2 class="${index === activeImage ? 'active' : ''}">${element.title}</h2>`;
