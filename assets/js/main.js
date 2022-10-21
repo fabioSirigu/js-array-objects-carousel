@@ -103,8 +103,17 @@ nextButton.addEventListener('click', function () {
 prevButton.addEventListener('click', function () {
       const slidesImg = document.querySelectorAll('.slides > img');
       const currentImage = slidesImg[activeImage];
+      // scorro il titolo
+      const slidesTitle = document.querySelectorAll('.title > h2');
+      const currentTitle = slidesTitle[activeImage];
+      // scorro il testo
+      const slidesText = document.querySelectorAll('.text > h5');
+      const currentText = slidesText[activeImage];
+
       // tolgo la classe active per non mostrarla più
       currentImage.classList.remove('active');
+      currentTitle.classList.remove('active');
+      currentText.classList.remove('active');
       // faccio un decremento della mia immagine per selezionare la successiva
       activeImage--;
       
@@ -115,6 +124,10 @@ prevButton.addEventListener('click', function () {
       }
       // ora che ho incrementato devo aggiungere una variabile per l'immagine e metterle la classe active
       const nextImage = slidesImg[activeImage];
+      const nextTitle = slidesTitle[activeImage];
+      const nextText = slidesText[activeImage];
       nextImage.classList.add('active')
+      nextTitle.classList.add('active')
+      nextText.classList.add('active')
      
 })
